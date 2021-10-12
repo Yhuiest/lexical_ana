@@ -1,0 +1,106 @@
+﻿  lexical_ana.cpp
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(49): warning C4244: “=”: 从“std::streamsize”转换到“int”，可能丢失数据
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(65): warning C4101: “num”: 未引用的局部变量
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(366): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(491): warning C4244: “初始化”: 从“std::streamsize”转换到“int”，可能丢失数据
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(299): warning C4244: “参数”: 从“T”转换到“T”，可能丢失数据
+          with
+          [
+              T=unsigned __int64
+          ]
+          and
+          [
+              T=long
+          ]
+  c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(1305): note: 参见对正在编译的函数 模板 实例化“void set_suffix<unsigned __int64>(T,int)”的引用
+          with
+          [
+              T=unsigned __int64
+          ]
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(311): warning C4244: “参数”: 从“T”转换到“T”，可能丢失数据
+          with
+          [
+              T=unsigned __int64
+          ]
+          and
+          [
+              T=unsigned int
+          ]
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(317): warning C4244: “参数”: 从“T”转换到“T”，可能丢失数据
+          with
+          [
+              T=unsigned __int64
+          ]
+          and
+          [
+              T=unsigned long
+          ]
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(328): warning C4244: “参数”: 从“T”转换到“T”，可能丢失数据
+          with
+          [
+              T=unsigned __int64
+          ]
+          and
+          [
+              T=float
+          ]
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(299): warning C4244: “参数”: 从“T”转换到“T”，可能丢失数据
+          with
+          [
+              T=double
+          ]
+          and
+          [
+              T=long
+          ]
+  c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(1402): note: 参见对正在编译的函数 模板 实例化“void set_suffix<double>(T,int)”的引用
+          with
+          [
+              T=double
+          ]
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(305): warning C4244: “参数”: 从“T”转换到“T”，可能丢失数据
+          with
+          [
+              T=double
+          ]
+          and
+          [
+              T=__int64
+          ]
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(311): warning C4244: “参数”: 从“T”转换到“T”，可能丢失数据
+          with
+          [
+              T=double
+          ]
+          and
+          [
+              T=unsigned int
+          ]
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(317): warning C4244: “参数”: 从“T”转换到“T”，可能丢失数据
+          with
+          [
+              T=double
+          ]
+          and
+          [
+              T=unsigned long
+          ]
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(323): warning C4244: “参数”: 从“T”转换到“T”，可能丢失数据
+          with
+          [
+              T=double
+          ]
+          and
+          [
+              T=unsigned __int64
+          ]
+c:\users\lmzop\source\repos\lexical_ana\lexical_ana\lexical_ana.cpp(328): warning C4244: “参数”: 从“T”转换到“T”，可能丢失数据
+          with
+          [
+              T=double
+          ]
+          and
+          [
+              T=float
+          ]
+  lexical_ana.vcxproj -> C:\Users\lmzop\source\repos\lexical_ana\x64\Debug\lexical_ana.exe

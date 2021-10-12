@@ -1,0 +1,1571 @@
+Num of characters:8184
+Num of lines:338
+<id,boolean>
+<id,no_nak>
+<=, >
+<id,true>
+<static, >
+<id,boolean>
+<id,between>
+<(, >
+<unsigned, >
+<char, >
+<id,a>
+<,, >
+<unsigned, >
+<char, >
+<id,b>
+<,, >
+<unsigned, >
+<char, >
+<id,c>
+<), >
+<{, >
+<if, >
+<(, >
+<(, >
+<id,a>
+<<=, >
+<id,b>
+<), >
+<&&, >
+<(, >
+<id,b>
+<<, >
+<id,c>
+<), >
+<||, >
+<(, >
+<(, >
+<id,c>
+<<, >
+<id,a>
+<), >
+<&&, >
+<(, >
+<id,a>
+<<=, >
+<id,b>
+<), >
+<), >
+<||, >
+<(, >
+<(, >
+<id,b>
+<<, >
+<id,c>
+<), >
+<&&, >
+<(, >
+<id,c>
+<<, >
+<id,a>
+<), >
+<), >
+<), >
+<{, >
+<return, >
+<id,true>
+<}, >
+<else, >
+<{, >
+<return, >
+<id,false>
+<}, >
+<}, >
+<static, >
+<void, >
+<id,put_frame>
+<(, >
+<unsigned, >
+<char, >
+<*, >
+<id,frame>
+<,, >
+<int, >
+<id,len>
+<), >
+<{, >
+<*, >
+<(, >
+<unsigned, >
+<int, >
+<*, >
+<), >
+<(, >
+<id,frame>
+<+, >
+<id,len>
+<), >
+<=, >
+<id,crc32>
+<(, >
+<id,frame>
+<,, >
+<id,len>
+<), >
+<id,send_frame>
+<(, >
+<id,frame>
+<,, >
+<id,len>
+<+, >
+<sizeof, >
+<(, >
+<unsigned, >
+<int, >
+<), >
+<), >
+<}, >
+<static, >
+<void, >
+<id,send_frame_to_physical>
+<(, >
+<unsigned, >
+<char, >
+<id,frame_kind>
+<,, >
+<unsigned, >
+<char, >
+<id,frame_nr>
+<,, >
+<unsigned, >
+<char, >
+<id,frame_expected>
+<,, >
+<unsigned, >
+<char, >
+<*, >
+<id,packet>
+<,, >
+<unsigned, >
+<int, >
+<id,len>
+<), >
+<{, >
+<struct, >
+<id,FRAME>
+<id,f>
+<id,f>
+<., >
+<id,kind>
+<=, >
+<id,frame_kind>
+<id,f>
+<., >
+<id,seq>
+<=, >
+<id,frame_nr>
+<if, >
+<(, >
+<id,frame_kind>
+<==, >
+<id,FRAME_DATA>
+<), >
+<{, >
+<id,memcpy>
+<(, >
+<id,f>
+<., >
+<id,data>
+<,, >
+<id,packet>
+<,, >
+<id,len>
+<), >
+<}, >
+<if, >
+<(, >
+<id,frame_kind>
+<==, >
+<id,FRAME_NAK>
+<), >
+<{, >
+<id,no_nak>
+<=, >
+<id,false>
+<}, >
+<id,f>
+<., >
+<id,ack>
+<=, >
+<(, >
+<id,frame_expected>
+<+, >
+<id,MAX_SEQ>
+<), >
+<%, >
+<(, >
+<id,MAX_SEQ>
+<+, >
+<long,1>
+<id,put_frame>
+<(, >
+<(, >
+<unsigned, >
+<char, >
+<*, >
+<), >
+<&, >
+<id,f>
+<,, >
+<id,len>
+<+, >
+<long,3>
+<if, >
+<(, >
+<id,f>
+<., >
+<id,kind>
+<==, >
+<id,FRAME_DATA>
+<), >
+<{, >
+<id,lprintf>
+<(, >
+<string,Send DATA seq:%d ack:%d len:%d, ID %d,
+>
+<,, >
+<id,f>
+<., >
+<id,seq>
+<,, >
+<id,f>
+<., >
+<id,ack>
+<,, >
+<id,len>
+<,, >
+<*, >
+<(, >
+<short, >
+<*, >
+<), >
+<id,f>
+<., >
+<id,data>
+<), >
+<}, >
+<else, >
+<if, >
+<(, >
+<id,f>
+<., >
+<id,kind>
+<==, >
+<id,FRAME_ACK>
+<), >
+<{, >
+<id,lprintf>
+<(, >
+<string,Send ACK ack:%d
+>
+<,, >
+<id,f>
+<., >
+<id,ack>
+<), >
+<}, >
+<else, >
+<{, >
+<id,lprintf>
+<(, >
+<string,Send NAK ack:%d
+>
+<,, >
+<id,f>
+<., >
+<id,ack>
+<), >
+<}, >
+<}, >
+<void, >
+<id,Go_back_n>
+<(, >
+<int, >
+<id,argc>
+<,, >
+<char, >
+<*, >
+<*, >
+<id,argv>
+<), >
+<{, >
+<unsigned, >
+<char, >
+<id,next_frame_to_send>
+<=, >
+<integer,0>
+<unsigned, >
+<char, >
+<id,frame_expected>
+<=, >
+<integer,0>
+<unsigned, >
+<char, >
+<id,ack_expected>
+<=, >
+<integer,0>
+<unsigned, >
+<char, >
+<id,nbuffer>
+<=, >
+<integer,0>
+<int, >
+<id,event>
+<,, >
+<id,timeout_seq>
+<char, >
+<id,buffer>
+<[, >
+<id,MAX_SEQ>
+<+, >
+<long,1>
+<[, >
+<id,PKT_LEN>
+<], >
+<int, >
+<id,pkt_len>
+<[, >
+<id,MAX_SEQ>
+<+, >
+<long,1>
+<struct, >
+<id,FRAME>
+<id,f>
+<int, >
+<id,frame_len>
+<id,boolean>
+<id,physical_layer_ready>
+<=, >
+<id,true>
+<id,boolean>
+<id,sending_goback_frame>
+<=, >
+<id,false>
+<unsigned, >
+<char, >
+<id,next_goback_frame>
+<id,protocol_init>
+<(, >
+<id,argc>
+<,, >
+<id,argv>
+<), >
+<id,disable_network_layer>
+<(, >
+<), >
+<while, >
+<(, >
+<long,1>
+<{, >
+<id,event>
+<=, >
+<id,wait_for_event>
+<(, >
+<&, >
+<id,timeout_seq>
+<), >
+<switch, >
+<(, >
+<id,event>
+<), >
+<{, >
+<case, >
+<id,NETWORK_LAYER_READY>
+<:, >
+<id,pkt_len>
+<[, >
+<id,next_frame_to_send>
+<], >
+<=, >
+<id,get_packet>
+<(, >
+<id,buffer>
+<[, >
+<id,next_frame_to_send>
+<], >
+<), >
+<id,nbuffer>
+<++, >
+<id,send_frame_to_physical>
+<(, >
+<id,FRAME_DATA>
+<,, >
+<id,next_frame_to_send>
+<,, >
+<id,frame_expected>
+<,, >
+<id,buffer>
+<[, >
+<id,next_frame_to_send>
+<], >
+<,, >
+<id,pkt_len>
+<[, >
+<id,next_frame_to_send>
+<], >
+<), >
+<id,start_timer>
+<(, >
+<id,next_frame_to_send>
+<,, >
+<id,DATA_TIMER>
+<), >
+<id,stop_ack_timer>
+<(, >
+<), >
+<id,physical_layer_ready>
+<=, >
+<id,false>
+<id,INC>
+<(, >
+<id,next_frame_to_send>
+<), >
+<break, >
+<case, >
+<id,PHYSICAL_LAYER_READY>
+<:, >
+<id,physical_layer_ready>
+<=, >
+<id,true>
+<while, >
+<(, >
+<id,sending_goback_frame>
+<==, >
+<id,true>
+<&&, >
+<id,phl_sq_len>
+<(, >
+<), >
+<<, >
+<long,30000>
+<{, >
+<id,send_frame_to_physical>
+<(, >
+<id,FRAME_DATA>
+<,, >
+<id,next_goback_frame>
+<,, >
+<id,frame_expected>
+<,, >
+<id,buffer>
+<[, >
+<id,next_goback_frame>
+<], >
+<,, >
+<id,pkt_len>
+<[, >
+<id,next_goback_frame>
+<], >
+<), >
+<id,start_timer>
+<(, >
+<id,next_goback_frame>
+<,, >
+<id,DATA_TIMER>
+<), >
+<id,INC>
+<(, >
+<id,next_goback_frame>
+<), >
+<id,physical_layer_ready>
+<=, >
+<id,false>
+<if, >
+<(, >
+<id,next_goback_frame>
+<==, >
+<id,next_frame_to_send>
+<), >
+<{, >
+<id,sending_goback_frame>
+<=, >
+<id,false>
+<id,enable_network_layer>
+<(, >
+<), >
+<}, >
+<}, >
+<break, >
+<case, >
+<id,FRAME_RECEIVED>
+<:, >
+<id,frame_len>
+<=, >
+<id,recv_frame>
+<(, >
+<(, >
+<unsigned, >
+<char, >
+<*, >
+<), >
+<&, >
+<id,f>
+<,, >
+<sizeof, >
+<(, >
+<struct, >
+<id,FRAME>
+<), >
+<), >
+<if, >
+<(, >
+<id,frame_len>
+<<, >
+<long,5>
+<||, >
+<id,crc32>
+<(, >
+<(, >
+<unsigned, >
+<char, >
+<*, >
+<), >
+<&, >
+<id,f>
+<,, >
+<id,frame_len>
+<), >
+<!=, >
+<integer,0>
+<), >
+<{, >
+<id,lprintf>
+<(, >
+<string,Receive error! Bad CRC checkcum.seq:%d ack:%d len:%d
+>
+<,, >
+<id,f>
+<., >
+<id,seq>
+<,, >
+<id,f>
+<., >
+<id,ack>
+<,, >
+<id,frame_len>
+<), >
+<break, >
+<}, >
+<if, >
+<(, >
+<id,f>
+<., >
+<id,kind>
+<==, >
+<id,FRAME_DATA>
+<&&, >
+<id,f>
+<., >
+<id,seq>
+<==, >
+<id,frame_expected>
+<), >
+<{, >
+<id,lprintf>
+<(, >
+<string,Receive data frame,len:%d,seq:%d,ack:%d,ack_e:%d,ID:%d
+>
+<,, >
+<id,frame_len>
+<,, >
+<id,f>
+<., >
+<id,seq>
+<,, >
+<id,f>
+<., >
+<id,ack>
+<,, >
+<id,ack_expected>
+<,, >
+<*, >
+<(, >
+<short, >
+<*, >
+<), >
+<id,f>
+<., >
+<id,data>
+<), >
+<id,put_packet>
+<(, >
+<id,f>
+<., >
+<id,data>
+<,, >
+<id,frame_len>
+<-, >
+<long,3>
+<-, >
+<sizeof, >
+<(, >
+<unsigned, >
+<int, >
+<), >
+<), >
+<id,INC>
+<(, >
+<id,frame_expected>
+<), >
+<id,start_ack_timer>
+<(, >
+<id,ACK_TIMER>
+<), >
+<}, >
+<while, >
+<(, >
+<id,between>
+<(, >
+<id,ack_expected>
+<,, >
+<id,f>
+<., >
+<id,ack>
+<,, >
+<id,next_frame_to_send>
+<), >
+<==, >
+<id,true>
+<), >
+<{, >
+<if, >
+<(, >
+<id,nbuffer>
+<>, >
+<integer,0>
+<), >
+<{, >
+<id,nbuffer>
+<--, >
+<}, >
+<id,stop_timer>
+<(, >
+<id,ack_expected>
+<), >
+<id,sending_goback_frame>
+<=, >
+<id,false>
+<id,INC>
+<(, >
+<id,ack_expected>
+<), >
+<if, >
+<(, >
+<id,sending_goback_frame>
+<==, >
+<id,true>
+<), >
+<{, >
+<id,INC>
+<(, >
+<id,next_goback_frame>
+<), >
+<}, >
+<}, >
+<break, >
+<case, >
+<id,DATA_TIMEOUT>
+<:, >
+<id,next_goback_frame>
+<=, >
+<id,ack_expected>
+<id,sending_goback_frame>
+<=, >
+<id,true>
+<id,send_frame_to_physical>
+<(, >
+<id,FRAME_DATA>
+<,, >
+<id,next_goback_frame>
+<,, >
+<id,frame_expected>
+<,, >
+<id,buffer>
+<[, >
+<id,next_goback_frame>
+<], >
+<,, >
+<id,pkt_len>
+<[, >
+<id,next_goback_frame>
+<], >
+<), >
+<id,start_timer>
+<(, >
+<id,next_frame_to_send>
+<,, >
+<id,DATA_TIMER>
+<), >
+<id,INC>
+<(, >
+<id,next_goback_frame>
+<), >
+<id,physical_layer_ready>
+<=, >
+<id,false>
+<if, >
+<(, >
+<id,nbuffer>
+<==, >
+<integer,0>
+<), >
+<{, >
+<id,sending_goback_frame>
+<=, >
+<id,false>
+<id,enable_network_layer>
+<(, >
+<), >
+<}, >
+<id,disable_network_layer>
+<(, >
+<), >
+<break, >
+<case, >
+<id,ACK_TIMEOUT>
+<:, >
+<id,send_frame_to_physical>
+<(, >
+<id,FRAME_ACK>
+<,, >
+<id,next_frame_to_send>
+<,, >
+<id,frame_expected>
+<,, >
+<id,buffer>
+<[, >
+<id,next_frame_to_send>
+<], >
+<,, >
+<integer,0>
+<), >
+<id,stop_ack_timer>
+<(, >
+<), >
+<break, >
+<}, >
+<if, >
+<(, >
+<id,nbuffer>
+<<, >
+<id,MAX_SEQ>
+<&&, >
+<id,physical_layer_ready>
+<==, >
+<id,true>
+<&&, >
+<id,sending_goback_frame>
+<==, >
+<id,false>
+<), >
+<{, >
+<id,enable_network_layer>
+<(, >
+<), >
+<}, >
+<else, >
+<{, >
+<id,disable_network_layer>
+<(, >
+<), >
+<}, >
+<}, >
+<}, >
+<void, >
+<id,selective>
+<(, >
+<int, >
+<id,argc>
+<,, >
+<char, >
+<*, >
+<*, >
+<id,argv>
+<), >
+<{, >
+<unsigned, >
+<char, >
+<id,ack_expected>
+<=, >
+<integer,0>
+<unsigned, >
+<char, >
+<id,next_frame_to_send>
+<=, >
+<integer,0>
+<unsigned, >
+<char, >
+<id,frame_expected>
+<=, >
+<integer,0>
+<unsigned, >
+<char, >
+<id,too_far>
+<=, >
+<id,NR_BUF>
+<struct, >
+<id,FRAME>
+<id,f>
+<char, >
+<id,out_buf>
+<[, >
+<id,NR_BUF>
+<], >
+<[, >
+<id,PKT_LEN>
+<], >
+<int, >
+<id,out_packet_len>
+<[, >
+<id,NR_BUF>
+<], >
+<char, >
+<id,in_buf>
+<[, >
+<id,NR_BUF>
+<], >
+<[, >
+<id,PKT_LEN>
+<], >
+<int, >
+<id,in_packet_len>
+<[, >
+<id,NR_BUF>
+<], >
+<int, >
+<id,frame_len>
+<id,boolean>
+<id,arrived>
+<[, >
+<id,NR_BUF>
+<], >
+<for, >
+<(, >
+<int, >
+<id,i>
+<=, >
+<integer,0>
+<id,i>
+<<, >
+<id,NR_BUF>
+<id,i>
+<++, >
+<), >
+<{, >
+<id,arrived>
+<[, >
+<id,i>
+<], >
+<=, >
+<id,false>
+<}, >
+<unsigned, >
+<char, >
+<id,nbuffered>
+<=, >
+<integer,0>
+<unsigned, >
+<char, >
+<id,event>
+<int, >
+<id,timeout_seq>
+<id,boolean>
+<id,phl_ready>
+<=, >
+<id,false>
+<id,protocol_init>
+<(, >
+<id,argc>
+<,, >
+<id,argv>
+<), >
+<id,disable_network_layer>
+<(, >
+<), >
+<while, >
+<(, >
+<long,1>
+<{, >
+<id,event>
+<=, >
+<id,wait_for_event>
+<(, >
+<&, >
+<id,timeout_seq>
+<), >
+<switch, >
+<(, >
+<id,event>
+<), >
+<{, >
+<case, >
+<id,NETWORK_LAYER_READY>
+<:, >
+<id,out_packet_len>
+<[, >
+<id,next_frame_to_send>
+<%, >
+<id,NR_BUF>
+<], >
+<=, >
+<id,get_packet>
+<(, >
+<id,out_buf>
+<[, >
+<id,next_frame_to_send>
+<%, >
+<id,NR_BUF>
+<], >
+<), >
+<id,send_frame_to_physical>
+<(, >
+<id,FRAME_DATA>
+<,, >
+<id,next_frame_to_send>
+<,, >
+<id,frame_expected>
+<,, >
+<id,out_buf>
+<[, >
+<id,next_frame_to_send>
+<%, >
+<id,NR_BUF>
+<], >
+<,, >
+<id,out_packet_len>
+<[, >
+<id,next_frame_to_send>
+<%, >
+<id,NR_BUF>
+<], >
+<), >
+<id,start_timer>
+<(, >
+<id,next_frame_to_send>
+<,, >
+<id,DATA_TIMER>
+<), >
+<id,stop_ack_timer>
+<(, >
+<), >
+<id,INC>
+<(, >
+<id,next_frame_to_send>
+<), >
+<id,nbuffered>
+<++, >
+<break, >
+<case, >
+<id,PHYSICAL_LAYER_READY>
+<:, >
+<id,phl_ready>
+<=, >
+<id,true>
+<break, >
+<case, >
+<id,FRAME_RECEIVED>
+<:, >
+<id,frame_len>
+<=, >
+<id,recv_frame>
+<(, >
+<(, >
+<unsigned, >
+<char, >
+<*, >
+<), >
+<&, >
+<id,f>
+<,, >
+<sizeof, >
+<(, >
+<struct, >
+<id,FRAME>
+<), >
+<), >
+<if, >
+<(, >
+<id,crc32>
+<(, >
+<(, >
+<unsigned, >
+<char, >
+<*, >
+<), >
+<&, >
+<id,f>
+<,, >
+<id,frame_len>
+<), >
+<), >
+<{, >
+<id,lprintf>
+<(, >
+<string,Receive error! Bad CRC checkcum.seq:%d ack:%d len:%d
+>
+<,, >
+<id,f>
+<., >
+<id,seq>
+<,, >
+<id,f>
+<., >
+<id,ack>
+<,, >
+<id,frame_len>
+<), >
+<if, >
+<(, >
+<id,no_nak>
+<==, >
+<id,true>
+<), >
+<{, >
+<id,send_frame_to_physical>
+<(, >
+<id,FRAME_NAK>
+<,, >
+<integer,0>
+<,, >
+<id,frame_expected>
+<,, >
+<id,NULL>
+<,, >
+<integer,0>
+<), >
+<id,no_nak>
+<=, >
+<id,false>
+<id,stop_ack_timer>
+<(, >
+<), >
+<}, >
+<break, >
+<}, >
+<if, >
+<(, >
+<id,f>
+<., >
+<id,kind>
+<==, >
+<id,FRAME_DATA>
+<), >
+<{, >
+<id,in_packet_len>
+<[, >
+<id,f>
+<., >
+<id,seq>
+<%, >
+<id,NR_BUF>
+<], >
+<=, >
+<id,frame_len>
+<id,lprintf>
+<(, >
+<string,Receive data frame,len:%d,seq:%d,ack:%d,ack_e:%d,ID:%d
+>
+<,, >
+<id,frame_len>
+<,, >
+<id,f>
+<., >
+<id,seq>
+<,, >
+<id,f>
+<., >
+<id,ack>
+<,, >
+<id,ack_expected>
+<,, >
+<*, >
+<(, >
+<short, >
+<*, >
+<), >
+<id,f>
+<., >
+<id,data>
+<), >
+<if, >
+<(, >
+<(, >
+<id,f>
+<., >
+<id,seq>
+<!=, >
+<id,frame_expected>
+<), >
+<&&, >
+<id,no_nak>
+<==, >
+<id,true>
+<), >
+<{, >
+<id,send_frame_to_physical>
+<(, >
+<id,FRAME_NAK>
+<,, >
+<integer,0>
+<,, >
+<id,frame_expected>
+<,, >
+<id,NULL>
+<,, >
+<integer,0>
+<), >
+<id,no_nak>
+<=, >
+<id,false>
+<id,stop_ack_timer>
+<(, >
+<), >
+<}, >
+<else, >
+<{, >
+<id,start_ack_timer>
+<(, >
+<id,ACK_TIMER>
+<), >
+<}, >
+<if, >
+<(, >
+<id,between>
+<(, >
+<id,frame_expected>
+<,, >
+<id,f>
+<., >
+<id,seq>
+<,, >
+<id,too_far>
+<), >
+<==, >
+<id,true>
+<&&, >
+<(, >
+<id,arrived>
+<[, >
+<id,f>
+<., >
+<id,seq>
+<%, >
+<id,NR_BUF>
+<], >
+<), >
+<==, >
+<id,false>
+<), >
+<{, >
+<id,arrived>
+<[, >
+<id,f>
+<., >
+<id,seq>
+<%, >
+<id,NR_BUF>
+<], >
+<=, >
+<id,true>
+<id,memcpy>
+<(, >
+<id,in_buf>
+<[, >
+<id,f>
+<., >
+<id,seq>
+<%, >
+<id,NR_BUF>
+<], >
+<,, >
+<id,f>
+<., >
+<id,data>
+<,, >
+<id,PKT_LEN>
+<), >
+<while, >
+<(, >
+<id,arrived>
+<[, >
+<id,frame_expected>
+<%, >
+<id,NR_BUF>
+<], >
+<==, >
+<id,true>
+<), >
+<{, >
+<id,dbg_event>
+<(, >
+<string,to network:%d
+>
+<,, >
+<id,frame_expected>
+<%, >
+<id,NR_BUF>
+<), >
+<id,put_packet>
+<(, >
+<id,in_buf>
+<[, >
+<id,frame_expected>
+<%, >
+<id,NR_BUF>
+<], >
+<,, >
+<id,in_packet_len>
+<[, >
+<id,frame_expected>
+<%, >
+<id,NR_BUF>
+<], >
+<-, >
+<long,3>
+<-, >
+<sizeof, >
+<(, >
+<unsigned, >
+<int, >
+<), >
+<), >
+<id,no_nak>
+<=, >
+<id,true>
+<id,arrived>
+<[, >
+<id,frame_expected>
+<%, >
+<id,NR_BUF>
+<], >
+<=, >
+<id,false>
+<id,INC>
+<(, >
+<id,frame_expected>
+<), >
+<id,INC>
+<(, >
+<id,too_far>
+<), >
+<id,start_ack_timer>
+<(, >
+<id,ACK_TIMER>
+<), >
+<}, >
+<}, >
+<}, >
+<if, >
+<(, >
+<(, >
+<id,f>
+<., >
+<id,kind>
+<==, >
+<id,FRAME_NAK>
+<), >
+<&&, >
+<id,between>
+<(, >
+<id,ack_expected>
+<,, >
+<(, >
+<id,f>
+<., >
+<id,ack>
+<+, >
+<long,1>
+<%, >
+<(, >
+<id,MAX_SEQ>
+<+, >
+<long,1>
+<,, >
+<id,next_frame_to_send>
+<), >
+<==, >
+<id,true>
+<), >
+<{, >
+<id,send_frame_to_physical>
+<(, >
+<id,FRAME_DATA>
+<,, >
+<(, >
+<id,f>
+<., >
+<id,ack>
+<+, >
+<long,1>
+<%, >
+<(, >
+<id,MAX_SEQ>
+<+, >
+<long,1>
+<,, >
+<id,frame_expected>
+<,, >
+<id,out_buf>
+<[, >
+<(, >
+<id,f>
+<., >
+<id,ack>
+<+, >
+<long,1>
+<%, >
+<id,NR_BUF>
+<], >
+<,, >
+<id,out_packet_len>
+<[, >
+<(, >
+<id,f>
+<., >
+<id,ack>
+<+, >
+<long,1>
+<%, >
+<id,NR_BUF>
+<], >
+<), >
+<id,start_timer>
+<(, >
+<(, >
+<id,f>
+<., >
+<id,ack>
+<+, >
+<long,1>
+<%, >
+<(, >
+<id,MAX_SEQ>
+<+, >
+<long,1>
+<,, >
+<id,DATA_TIMER>
+<), >
+<id,stop_ack_timer>
+<(, >
+<), >
+<}, >
+<while, >
+<(, >
+<id,between>
+<(, >
+<id,ack_expected>
+<,, >
+<id,f>
+<., >
+<id,ack>
+<,, >
+<id,next_frame_to_send>
+<), >
+<==, >
+<id,true>
+<), >
+<{, >
+<id,nbuffered>
+<--, >
+<id,stop_timer>
+<(, >
+<id,ack_expected>
+<), >
+<id,INC>
+<(, >
+<id,ack_expected>
+<), >
+<}, >
+<break, >
+<case, >
+<id,DATA_TIMEOUT>
+<:, >
+<id,dbg_event>
+<(, >
+<string,time_seq:%d
+>
+<,, >
+<id,timeout_seq>
+<), >
+<id,send_frame_to_physical>
+<(, >
+<id,FRAME_DATA>
+<,, >
+<id,timeout_seq>
+<,, >
+<id,frame_expected>
+<,, >
+<id,out_buf>
+<[, >
+<id,timeout_seq>
+<%, >
+<id,NR_BUF>
+<], >
+<,, >
+<id,out_packet_len>
+<[, >
+<id,timeout_seq>
+<%, >
+<id,NR_BUF>
+<], >
+<), >
+<id,start_timer>
+<(, >
+<id,timeout_seq>
+<,, >
+<id,DATA_TIMER>
+<), >
+<id,stop_ack_timer>
+<(, >
+<), >
+<break, >
+<case, >
+<id,ACK_TIMEOUT>
+<:, >
+<id,send_frame_to_physical>
+<(, >
+<id,FRAME_ACK>
+<,, >
+<integer,0>
+<,, >
+<id,frame_expected>
+<,, >
+<id,NULL>
+<,, >
+<integer,0>
+<), >
+<id,stop_ack_timer>
+<(, >
+<), >
+<}, >
+<if, >
+<(, >
+<id,nbuffered>
+<<, >
+<id,NR_BUF>
+<&&, >
+<id,phl_ready>
+<==, >
+<id,true>
+<), >
+<{, >
+<id,enable_network_layer>
+<(, >
+<), >
+<}, >
+<else, >
+<{, >
+<id,disable_network_layer>
+<(, >
+<), >
+<}, >
+<}, >
+<}, >
+<int, >
+<id,main>
+<(, >
+<int, >
+<id,argc>
+<,, >
+<char, >
+<*, >
+<*, >
+<id,argv>
+<), >
+<{, >
+<id,lprintf>
+<(, >
+<string,Designed by Liu Mingzhe, build: >
+<id,__DATE__>
+<string,  >
+<id,__TIME__>
+<string,
+>
+<), >
+<if, >
+<(, >
+<id,argc>
+<<, >
+<long,2>
+<{, >
+<id,lprintf>
+<(, >
+<string,Lack of argument.
+>
+<), >
+<return, >
+<integer,0>
+<}, >
+</, >
+<switch, >
+<(, >
+<id,argv>
+<[, >
+<long,1>
+<[, >
+<id,strlen>
+<(, >
+<id,argv>
+<[, >
+<long,1>
+<), >
+<-, >
+<long,1>
+<), >
+<{, >
+<case, >
+<char,G>
+<:, >
+<case, >
+<char,g>
+<:, >
+<id,argv>
+<[, >
+<long,1>
+<[, >
+<id,strlen>
+<(, >
+<id,argv>
+<[, >
+<long,1>
+<), >
+<-, >
+<long,1>
+<=, >
+<integer,0>
+<id,Go_back_n>
+<(, >
+<id,argc>
+<,, >
+<id,argv>
+<), >
+<case, >
+<char,S>
+<:, >
+<case, >
+<char,s>
+<:, >
+<id,selective>
+<(, >
+<id,argc>
+<,, >
+<id,argv>
+<), >
+<default, >
+<:, >
+<id,lprintf>
+<(, >
+<string,Please input the right argument.
+-g -G:	Go_back_n
+-s -S:	seletive>
+<), >
+<}, >
+<}, >
+Num of word
+	Identifier:532
+	Key:162
+	Bound:460
+	Operater:332
+	Constant:39
